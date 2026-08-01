@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2>My Applied Jobs</h2>
+
+{% if applications %}
+
+    {% for application in applications %}
+
+    <div style="border:1px solid #ccc; padding:15px; margin-bottom:20px; border-radius:8px;">
+
+        <h3>{{ application.job.job_title }}</h3>
+
+        <p><strong>Company:</strong> {{ application.job.company_name }}</p>
+
+        <p><strong>Location:</strong> {{ application.job.location }}</p>
+
+        <p><strong>Job Type:</strong> {{ application.job.job_type }}</p>
+
+        <p><strong>Salary:</strong> {{ application.job.salary }}</p>
+
+        <p><strong>Applied On:</strong> {{ application.applied_date }}</p>
+
+        <p><strong>Status:</strong> Applied</p>
+
+        <a href="{% url 'job_detail' application.job.id %}">
+            View Job
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<h3>You have not applied for any jobs yet.</h3>
+
+{% endif %}
+
+{% endblock %}

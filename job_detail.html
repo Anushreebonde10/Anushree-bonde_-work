@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2>{{ job.job_title }}</h2>
+
+<hr>
+
+<p><strong>Company:</strong> {{ job.company_name }}</p>
+
+<p><strong>Location:</strong> {{ job.location }}</p>
+
+<p><strong>Job Type:</strong> {{ job.job_type }}</p>
+
+<p><strong>Experience:</strong> {{ job.experience }}</p>
+
+<p><strong>Salary:</strong> {{ job.salary }}</p>
+
+<p><strong>Required Skills:</strong> {{ job.required_skills }}</p>
+
+<p><strong>Description:</strong></p>
+
+<p>{{ job.description }}</p>
+
+<p><strong>Last Date:</strong> {{ job.last_date }}</p>
+
+<p><strong>Posted On:</strong> {{ job.posted_date }}</p>
+
+<br>
+<a href="{% url 'apply_job' job.id %}">
+    <button>Apply Now</button>
+</a>
+
+
+<br><br>
+
+<a href="{% url 'job_list' %}">← Back to Jobs</a>
+
+{% endblock %}

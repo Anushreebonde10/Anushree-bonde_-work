@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% if messages %}
+    <Ul> 
+        {% for message in messages %}
+        <li> {{message}}</li>
+        {% endfor %}
+     </Ul>
+     {% endif%}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="{% url 'dashboard' %}">
+            Placement CRM
+        </a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav me-auto">
+
+                {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard' %}">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'job_list' %}">
+                        Jobs
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'applied_jobs' %}">
+                        Applied Jobs
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">
+                        Profile
+                    </a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+            <ul class="navbar-nav">
+
+                {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <span class="navbar-text me-3">
+                        Welcome, {{ user.username }}
+                    </span>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">
+                        Logout
+                    </a>
+                </li>
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">
+                        Login
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">
+                        Register
+                    </a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-3">
+
+    {% if user.is_authenticated %}
+
+    <div class="list-group">
+
+        <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action">
+            Dashboard
+        </a>
+
+        <a href="{% url 'profile' %}" class="list-group-item list-group-item-action">
+            My Profile
+        </a>
+
+        <a href="{% url 'job_list' %}" class="list-group-item list-group-item-action">
+            Job List
+        </a>
+
+        <a href="{% url 'applied_jobs' %}" class="list-group-item list-group-item-action">
+            Applied Jobs
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<div class="col-md-9">
+
+        <hr>
+        {% block content %}
+{% endblock %}
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</html>
